@@ -21,7 +21,6 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "review_id")
     private UUID reviewId;
-    @JoinColumn(name = "restaurant_id")
     private UUID restaurantId;
     @Min(0)
     @Max(5)
