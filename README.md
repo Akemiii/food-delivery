@@ -1,3 +1,13 @@
-Modelo entidade
+# food delivery
+Serviço backend inspirado no ifood
 
-![image](https://github.com/Akemiii/food-delivery/assets/31140893/f674c7b5-9da3-4830-a4ae-7c3d72218b09)
+# Instalar
+
+Para instalar as dependências utilizar o comando: mvn clean install
+
+# Inicializar
+
+Para inicializar utilizar o comando: mvn spring-boot:run
+
+# Modelo entidade relacionamento
+![MER clone food](https://i.ibb.co/Ky2LpSQ/db.png)
