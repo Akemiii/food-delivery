@@ -22,7 +22,8 @@ public class Restaurant {
     private String description;
     private Boolean status;
     private BigDecimal delivery_tax;
-    private UUID category_id;
+    @Column(name= "category_id")
+    private UUID categoryId;
     private String city;
     private String state;
     private String neighborhood;
