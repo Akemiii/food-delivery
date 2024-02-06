@@ -10,6 +10,8 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.example.persistence.repository.ProductRepository;
 import java.util.List;
+import java.util.UUID;
+
 import static java.util.Objects.nonNull;
 
 @Service
@@ -27,7 +29,7 @@ public class ProductService {
     }
 
     @SneakyThrows
-    public ProductDomain findById(long productId) {
+    public ProductDomain findById(UUID productId) {
         return repository.findById(productId)
                 .map(objectMapperUtil.mapFn(ProductDomain.class))
                 .orElseThrow(ChangeSetPersister.NotFoundException::new);
@@ -43,7 +45,7 @@ public class ProductService {
         );
     }
 
-    public void delete(final Long productId) {
+    public void delete(final UUID productId) {
         repository.deleteById(productId);
     }
 

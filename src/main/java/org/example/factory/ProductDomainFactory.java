@@ -5,6 +5,8 @@ import org.example.api.dto.request.UpdateProductRequest;
 import org.example.domain.ProductDomain;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class ProductDomainFactory {
 
@@ -17,7 +19,7 @@ public class ProductDomainFactory {
                 .build();
     }
 
-    public ProductDomain toUpdate(final Long productId, final UpdateProductRequest request){
+    public ProductDomain toUpdate(final UUID productId, final UpdateProductRequest request){
         return ProductDomain.builder()
                 .productId(productId)
                 .name(request.getName())

@@ -3,6 +3,7 @@ package org.example.domain;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -10,7 +11,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDomain {
-    private Long productId;
+    private UUID productId;
     private String name;
     private String description;
     private String image;

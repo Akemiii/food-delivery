@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -30,7 +31,7 @@ public class ProductController {
     }
 
     @GetMapping("{productId}")
-    public ProductResponse get(@PathVariable long productId) {
+    public ProductResponse get(@PathVariable UUID productId) {
         final var product = service.findById(productId);
 
         return objectMapperUtil.map(product, ProductResponse.class);
@@ -49,7 +50,7 @@ public class ProductController {
     //TODO:: Adicionar método update()
 
     @PutMapping("{productId}")
-    public ProductResponse update(@PathVariable long productId, @RequestBody @Validated UpdateProductRequest request) {
+    public ProductResponse update(@PathVariable UUID productId, @RequestBody @Validated UpdateProductRequest request) {
         final var product = service.update(
                 productDomainFactory.toUpdate(productId, request)
         );
@@ -59,7 +60,7 @@ public class ProductController {
 
     @DeleteMapping("{productId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long productId) {
+    public void delete(@PathVariable UUID productId) {
         service.delete(productId);
     }
 
