@@ -6,7 +6,9 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Table(name="review")
@@ -21,9 +23,14 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "review_id")
     private UUID reviewId;
-    private UUID restaurantId;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
     @Min(0)
     @Max(5)
     private int value;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
 }

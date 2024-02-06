@@ -4,7 +4,7 @@ package org.example.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.UUID;
 
 @Table(name="category")
@@ -23,5 +23,5 @@ public class Category {
     private String title;
 
     @OneToMany(mappedBy = "category")
-    private List<Restaurant> restaurants;
+    private Collection<Restaurant> restaurants;
 }

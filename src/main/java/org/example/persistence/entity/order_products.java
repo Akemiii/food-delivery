@@ -2,10 +2,12 @@ package org.example.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Table(name="order_products")
+@Table(name="orders_products")
 @Entity
 @Builder
 @Getter
@@ -16,10 +18,19 @@ public class order_products {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "order_products_id")
+    @Column(name = "orders_products_id")
     private UUID orderProductsId;
-    private UUID orderId;
-    private UUID product_id;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     private Integer quantity;
     private String comment;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }

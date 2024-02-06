@@ -3,7 +3,9 @@ package org.example.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Table(name="product_category")
@@ -20,6 +22,12 @@ public class ProductCategory {
     @Column(name = "product_category_id")
     private UUID productCategoryId;
     private String title;
-    private UUID restaurantId;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
 }
