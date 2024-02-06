@@ -18,7 +18,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "order_id")
     private UUID orderId;
-    @Column(name = "restaurant_id")
+    @JoinColumn(name = "restaurant_id")
     private UUID restaurantId;
     private String address;
     private String name;

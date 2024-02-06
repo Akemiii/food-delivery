@@ -18,9 +18,9 @@ public class order_products {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "order_products_id")
     private UUID orderProductsId;
-    @Column(name = "order_id")
+    @JoinColumn(name = "order_id")
     private UUID orderId;
-    @Column(name = "product_id")
+    @JoinColumn(name = "product_id")
     private UUID product_id;
     private Integer quantity;
     private String comment;

@@ -22,8 +22,6 @@ public class Restaurant {
     private String description;
     private Boolean status;
     private BigDecimal delivery_tax;
-    @Column(name= "category_id")
-    private UUID categoryId;
     private String city;
     private String state;
     private String neighborhood;
@@ -32,4 +30,7 @@ public class Restaurant {
     private String complement;
     private String reference;
 
+    @ManyToOne
+    @JoinColumn(name= "category_id")
+    private Category category;
 }

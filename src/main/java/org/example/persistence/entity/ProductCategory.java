@@ -20,7 +20,7 @@ public class ProductCategory {
     @Column(name = "product_category_id")
     private UUID productCategoryId;
     private String title;
-    @Column(name="restaurant_id")
+    @JoinColumn(name="restaurant_id")
     private UUID restaurantId;
 
 }
