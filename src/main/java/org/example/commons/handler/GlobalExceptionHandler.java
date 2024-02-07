@@ -22,10 +22,11 @@ public class GlobalExceptionHandler {
     @Value("${spring.application.name}")
     private String application;
 
-    @ExceptionHandler({HttpMessageNotReadableException.class, MethodArgumentTypeMismatchException.class})
+    @ExceptionHandler({ MethodArgumentTypeMismatchException.class})
     public ResponseEntity<ApiExceptionResponse> handle(HttpServletRequest request, Exception ex) {
+        System.out.print(ex.toString());
         final var response = customErrorResponse(request);
-        final var errorDetail = customErrorDetail(ex.getLocalizedMessage(), null);
+        final var errorDetail = customErrorDetail(ex.getMessage(), null);
         response.getErrors().add(errorDetail);
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);

@@ -1,5 +1,6 @@
 package org.example.api.dto.request.Restaurant;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
 public class CreateRestaurantRequest {
 
     @NotNull
-    @NotNull
+    @NotEmpty
     private String name;
     private String description;
     private BigDecimal delivery_tax;
