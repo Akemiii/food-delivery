@@ -30,6 +30,7 @@ public class Review {
     @Min(0)
     @Max(5)
     private int value;
+    private String description;
     @CreationTimestamp
     private LocalDateTime createdAt;
 

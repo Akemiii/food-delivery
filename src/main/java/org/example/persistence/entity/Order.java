@@ -9,6 +9,7 @@ import org.hibernate.annotations.Type;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "orders")
@@ -41,7 +42,7 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private Collection<Product> products;
+    private List<Product> products;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

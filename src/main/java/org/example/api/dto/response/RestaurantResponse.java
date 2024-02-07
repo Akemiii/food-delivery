@@ -1,32 +1,25 @@
-package org.example.persistence.entity;
+package org.example.api.dto.response;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.example.persistence.entity.Category;
+import org.example.persistence.entity.Review;
 import org.example.util.RestaurantStatus;
-import org.hibernate.annotations.CreationTimestamp;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
-@Table(name="restaurant")
-@Entity
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Restaurant {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "restaurant_id")
+@NoArgsConstructor
+public class RestaurantResponse {
     private UUID restaurantId;
-
     private String name;
     private String description;
-    @Enumerated(EnumType.STRING)
     private RestaurantStatus status;
     private BigDecimal delivery_tax;
     private String city;
@@ -36,13 +29,7 @@ public class Restaurant {
     private String number;
     private String complement;
     private String reference;
-    @CreationTimestamp
     private LocalDateTime createdAt;
-
-    @OneToMany(mappedBy = "restaurant")
-    private List<Review> reviews;
-
-    @ManyToOne
-    @JoinColumn(name= "category_id")
+    private Collection<Review> reviews;
     private Category category;
 }

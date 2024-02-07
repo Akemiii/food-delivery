@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Table(name="category")
@@ -23,5 +24,5 @@ public class Category {
     private String title;
 
     @OneToMany(mappedBy = "category")
-    private Collection<Restaurant> restaurants;
+    private List<Restaurant> restaurants;
 }
