@@ -3,7 +3,9 @@ package org.example.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.util.OrderStatus;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -27,13 +29,10 @@ public class Order {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    private String address;
-    private String name;
-    @Column(name = "phone_number")
-    private String phoneNumber;
     @Column(name = "total_value")
     private String totalValue;
-    private Boolean status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -43,4 +42,8 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private Collection<Product> products;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

@@ -50,20 +50,10 @@ public class ProductService {
     }
 
     public ProductDomain update(final ProductDomain updateProductDomain) {
-        final var productDomain = findById(updateProductDomain.getProductId());
+        productValidator.CheckValidBody(updateProductDomain);
+        var productDomain = findById(updateProductDomain.getProductId());
 
-        productValidator.CheckNegativePrice(updateProductDomain.getPrice());
-
-        if (nonNull(updateProductDomain.getName()) && !updateProductDomain.getName().isEmpty())
-            productDomain.setName(updateProductDomain.getName());
-        if (nonNull(updateProductDomain.getImage()) && !updateProductDomain.getImage().isEmpty())
-            productDomain.setImage(updateProductDomain.getImage());
-        if (nonNull(updateProductDomain.getDescription()) && !updateProductDomain.getDescription().isEmpty())
-            productDomain.setDescription(updateProductDomain.getDescription());
-
-        if (nonNull(updateProductDomain.getPrice()))
-            productDomain.setPrice(updateProductDomain.getPrice());
-
+        productDomain = productValidator.updateProductDomain(productDomain, updateProductDomain);
 
         final var product = repository.save(objectMapperUtil.map(productDomain, Product.class));
 

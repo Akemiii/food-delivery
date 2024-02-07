@@ -1,8 +1,11 @@
 package org.example.domain;
 
 import lombok.*;
+import org.example.persistence.entity.ProductCategory;
+import org.example.persistence.entity.Restaurant;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -16,6 +19,7 @@ public class ProductDomain {
     private String description;
     private String image;
     private BigDecimal price;
-    private Integer product_category_id;
-    private Integer restaurant_id;
+    private ProductCategory productCategory;
+    private Restaurant restaurant;
+    private LocalDateTime cratedAt;
 }

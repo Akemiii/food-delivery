@@ -25,7 +25,7 @@ public class ProductController {
     private final ObjectMapperUtil objectMapperUtil;
     private final ProductDomainFactory productDomainFactory;
 
-    @GetMapping("")
+    @GetMapping
     public List<ProductResponse> getAll() {
         return objectMapperUtil.mapAll(service.getAllProducts(), ProductResponse.class);
     }
@@ -47,10 +47,8 @@ public class ProductController {
         return objectMapperUtil.map(product, ProductResponse.class);
     }
 
-    //TODO:: Adicionar método update()
-
     @PutMapping("{productId}")
-    public ProductResponse update(@PathVariable UUID productId, @RequestBody @Validated UpdateProductRequest request) {
+    public ProductResponse update(@PathVariable UUID productId, UpdateProductRequest request) {
         final var product = service.update(
                 productDomainFactory.toUpdate(productId, request)
         );

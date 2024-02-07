@@ -7,5 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+
+        //TODO:: verificar a possibilidade de usar mensageria, KAFKA???
     }
 }

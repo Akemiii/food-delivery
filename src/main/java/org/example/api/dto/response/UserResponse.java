@@ -1,21 +1,24 @@
 package org.example.api.dto.response;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.persistence.entity.Order;
 
-import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponse {
-    private UUID productId;
+public class UserResponse {
+
+    private UUID user_id;
     private String name;
-    private String description;
-    private Float price;
-    private String image;
+    private String address;
+    private String phoneNumber;
+    private Collection<Order> orders;
 }

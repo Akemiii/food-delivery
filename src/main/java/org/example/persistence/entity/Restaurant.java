@@ -2,6 +2,7 @@ package org.example.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.util.RestaurantStatus;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -24,7 +25,8 @@ public class Restaurant {
 
     private String name;
     private String description;
-    private Boolean status;
+    @Enumerated(EnumType.STRING)
+    private RestaurantStatus status;
     private BigDecimal delivery_tax;
     private String city;
     private String state;
