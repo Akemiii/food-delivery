@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.persistence.entity.Order;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -20,5 +20,5 @@ public class UserResponse {
     private String name;
     private String address;
     private String phoneNumber;
-    private Collection<Order> orders;
+    private List<Order> orders;
 }

@@ -5,10 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.util.OrderStatus;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
-
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 

@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +26,7 @@ public class Restaurant {
     private String name;
     private String description;
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(10) DEFAULT 'CLOSED'")
     private RestaurantStatus status;
     private BigDecimal delivery_tax;
     private String city;
@@ -39,8 +39,8 @@ public class Restaurant {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "restaurant")
-    private List<Review> reviews;
+//    @OneToMany(mappedBy = "restaurant")
+//    private List<Review> reviews;
 
     @ManyToOne
     @JoinColumn(name= "category_id")

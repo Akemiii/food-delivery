@@ -1,18 +1,20 @@
-package org.example.api.dto.response;
+package org.example.domain;
 
 import lombok.*;
 import org.example.persistence.entity.Restaurant;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+
 @Getter
 @Setter
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class ReviewResponse {
+@AllArgsConstructor
+public class ReviewDomain {
 
     private UUID reviewId;
-    private UUID restaurant;
+    private Restaurant restaurant;
     private int value;
     private String description;
     private LocalDateTime createdAt;

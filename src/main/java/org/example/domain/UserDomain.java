@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.persistence.entity.Order;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -19,5 +19,5 @@ public class UserDomain {
     private String name;
     private String address;
     private String phoneNumber;
-    private Collection<Order> orders;
+    private List<Order> orders;
 }

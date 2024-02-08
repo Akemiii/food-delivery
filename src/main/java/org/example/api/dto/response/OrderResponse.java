@@ -9,7 +9,7 @@ import org.example.persistence.entity.Product;
 import org.example.persistence.entity.Restaurant;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -26,5 +26,5 @@ public class OrderResponse {
     private String totalValue;
     private Boolean status;
     private LocalDateTime createdAt;
-    private Collection<Product> products;
+    private List<Product> products;
 }

@@ -2,8 +2,6 @@ package org.example.util;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-
-import java.security.PublicKey;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;

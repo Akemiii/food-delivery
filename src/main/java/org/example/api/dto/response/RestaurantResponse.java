@@ -9,7 +9,7 @@ import org.example.persistence.entity.Review;
 import org.example.util.RestaurantStatus;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -30,6 +30,6 @@ public class RestaurantResponse {
     private String complement;
     private String reference;
     private LocalDateTime createdAt;
-    private Collection<Review> reviews;
+    private List<Review> reviews;
     private Category category;
 }

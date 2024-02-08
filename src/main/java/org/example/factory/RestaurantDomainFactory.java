@@ -2,8 +2,6 @@ package org.example.factory;
 
 import org.example.api.dto.request.Restaurant.CreateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantStatusRequest;
-import org.example.api.dto.request.UpdateProductRequest;
-import org.example.domain.ProductDomain;
 import org.example.domain.RestaurantDomain;
 import org.springframework.stereotype.Component;
 
@@ -23,11 +21,11 @@ public class RestaurantDomainFactory {
                 .number(request.getNumber())
                 .complement(request.getComplement())
                 .reference(request.getReference())
-                .category(request.getCategory())
                 .build();
     }
 
     public RestaurantDomain toUpdate(final UUID restaurantId, final UpdateRestaurantStatusRequest request){
+
 
         return RestaurantDomain.builder()
                 .restaurantId(restaurantId)

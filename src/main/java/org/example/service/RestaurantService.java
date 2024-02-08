@@ -2,21 +2,14 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.example.api.dto.request.Restaurant.CreateRestaurantRequest;
-import org.example.api.dto.response.RestaurantResponse;
-import org.example.domain.ProductDomain;
 import org.example.domain.RestaurantDomain;
-import org.example.persistence.entity.Product;
 import org.example.persistence.entity.Restaurant;
 import org.example.persistence.repository.RestaurantRepository;
 import org.example.util.ObjectMapperUtil;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
-
-import static java.util.Objects.nonNull;
 
 @Service
 @RequiredArgsConstructor
@@ -48,9 +41,6 @@ public class RestaurantService {
 
     public RestaurantDomain updateStatus(final RestaurantDomain domain) {
         var restaurantDomain = findById(domain.getRestaurantId());
-
-        if(!domain.getStatus().equals("OPEN") || !domain.getStatus().equals("CLOSED"))
-            throw new IllegalArgumentException("O status fornecido é inválido. Use OPEN ou CLOSED.");
 
         restaurantDomain.setStatus(domain.getStatus());
 
