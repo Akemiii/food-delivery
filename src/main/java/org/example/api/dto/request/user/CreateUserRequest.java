@@ -1,4 +1,4 @@
-package org.example.api.dto.request;
+package org.example.api.dto.request.user;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -7,8 +7,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateUserRequest {
+public class CreateUserRequest {
+
     @NotNull
     @NotEmpty
     private String name;
+    private String address;
+    private String phoneNumber;
 }

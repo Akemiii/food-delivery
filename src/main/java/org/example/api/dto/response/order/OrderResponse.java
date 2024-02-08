@@ -1,4 +1,4 @@
-package org.example.api.dto.response;
+package org.example.api.dto.response.order;
 
 
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package org.example.api.controller;
 import lombok.RequiredArgsConstructor;
-import org.example.api.dto.request.CreateReviewRequest;
-import org.example.api.dto.response.ReviewResponse;
+import org.example.api.dto.request.review.CreateReviewRequest;
+import org.example.api.dto.response.review.ReviewResponse;
 import org.example.factory.ReviewDomainFactory;
 import org.example.service.ReviewService;
 import org.example.util.ObjectMapperUtil;

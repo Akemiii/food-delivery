@@ -1,10 +1,8 @@
 package org.example.factory;
 
-import org.example.api.dto.request.CreateReviewRequest;
+import org.example.api.dto.request.review.CreateReviewRequest;
 import org.example.domain.ReviewDomain;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 @Component
 public class ReviewDomainFactory {

@@ -1,4 +1,4 @@
-package org.example.api.dto.request;
+package org.example.api.dto.request.review;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import org.example.persistence.entity.Restaurant;
 @Getter
 @Setter
 public class CreateReviewRequest {
-    
+
     @NotNull
     private int value;
     private String description;

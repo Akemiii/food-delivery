@@ -1,4 +1,4 @@
-package org.example.api.dto.response;
+package org.example.api.dto.response.user;
 
 
 import lombok.AllArgsConstructor;
@@ -20,5 +20,4 @@ public class UserResponse {
     private String name;
     private String address;
     private String phoneNumber;
-    private List<Order> orders;
 }

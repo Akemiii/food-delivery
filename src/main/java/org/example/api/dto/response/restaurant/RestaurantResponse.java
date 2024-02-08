@@ -1,4 +1,4 @@
-package org.example.api.dto.response;
+package org.example.api.dto.response.restaurant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +30,5 @@ public class RestaurantResponse {
     private String complement;
     private String reference;
     private LocalDateTime createdAt;
-    private List<Review> reviews;
     private Category category;
 }

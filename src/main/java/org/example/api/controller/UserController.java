@@ -2,8 +2,8 @@ package org.example.api.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.example.api.dto.request.CreateUserRequest;
-import org.example.api.dto.response.UserResponse;
+import org.example.api.dto.request.user.CreateUserRequest;
+import org.example.api.dto.response.user.UserResponse;
 import org.example.factory.UserDomainFactory;
 import org.example.service.UserService;
 import org.example.util.ObjectMapperUtil;

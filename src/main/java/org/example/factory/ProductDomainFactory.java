@@ -1,7 +1,7 @@
 package org.example.factory;
 
-import org.example.api.dto.request.CreateProductRequest;
-import org.example.api.dto.request.UpdateProductRequest;
+import org.example.api.dto.request.product.CreateProductRequest;
+import org.example.api.dto.request.product.UpdateProductRequest;
 import org.example.domain.ProductDomain;
 import org.springframework.stereotype.Component;
 

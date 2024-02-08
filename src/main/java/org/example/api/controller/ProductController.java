@@ -1,10 +1,9 @@
 package org.example.api.controller;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.api.dto.request.CreateProductRequest;
-import org.example.api.dto.request.UpdateProductRequest;
-import org.example.api.dto.response.ProductResponse;
+import org.example.api.dto.request.product.CreateProductRequest;
+import org.example.api.dto.request.product.UpdateProductRequest;
+import org.example.api.dto.response.product.ProductResponse;
 import org.example.factory.ProductDomainFactory;
 import org.example.service.ProductService;
 import org.example.util.ObjectMapperUtil;
@@ -55,6 +54,7 @@ public class ProductController {
 
         return objectMapperUtil.map(product, ProductResponse.class);
     }
+
 
     @DeleteMapping("{productId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
