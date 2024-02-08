@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.persistence.entity.Category;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -23,5 +24,4 @@ public class CreateRestaurantRequest {
     private String number;
     private String complement;
     private String reference;
-    private Category category;
 }

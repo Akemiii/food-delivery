@@ -22,7 +22,7 @@ public class Review {
     @Column(name = "review_id")
     private UUID reviewId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
     @Min(0)

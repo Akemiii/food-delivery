@@ -12,7 +12,6 @@ import java.util.UUID;
 public class ReviewResponse {
 
     private UUID reviewId;
-    private UUID restaurant;
     private int value;
     private String description;
     private LocalDateTime createdAt;

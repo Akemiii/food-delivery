@@ -3,6 +3,7 @@ package org.example.service;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.example.domain.ReviewDomain;
+import org.example.persistence.entity.Restaurant;
 import org.example.persistence.entity.Review;
 import org.example.persistence.repository.RestaurantRepository;
 import org.example.persistence.repository.ReviewRepository;
@@ -11,7 +12,6 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.UnaryOperator;
 
 @Service
 @RequiredArgsConstructor

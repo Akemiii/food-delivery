@@ -14,7 +14,6 @@ import java.util.UUID;
 public class ReviewDomain {
 
     private UUID reviewId;
-    private Restaurant restaurant;
     private int value;
     private String description;
     private LocalDateTime createdAt;

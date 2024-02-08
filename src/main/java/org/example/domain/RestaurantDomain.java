@@ -30,7 +30,7 @@ public class RestaurantDomain {
     private String reference;
     private LocalDateTime createdAt;
 //    private List<Review> reviews;
-//    private Category category;
+    private Category category;
 
 
 }

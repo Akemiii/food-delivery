@@ -39,9 +39,6 @@ public class Restaurant {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-//    @OneToMany(mappedBy = "restaurant")
-//    private List<Review> reviews;
-
     @ManyToOne
     @JoinColumn(name= "category_id")
     private Category category;
