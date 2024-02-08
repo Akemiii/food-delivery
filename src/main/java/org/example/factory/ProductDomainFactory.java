@@ -32,6 +32,7 @@ public class ProductDomainFactory {
 
     public ProductDomain toUpdateImage(final UUID productId, final UpdateProductImageRequest request){
         return  ProductDomain.builder()
+                .productId(productId)
                 .image(request.getImage())
                 .build();
     }

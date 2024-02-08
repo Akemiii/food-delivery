@@ -9,10 +9,9 @@ import org.example.validator.ProductValidator;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.example.persistence.repository.ProductRepository;
+
 import java.util.List;
 import java.util.UUID;
-
-import static java.util.Objects.nonNull;
 
 @Service
 @RequiredArgsConstructor
@@ -23,16 +22,24 @@ public class ProductService {
     private final ProductValidator productValidator;
 
     public List<ProductDomain> getAllProducts() {
-        return objectMapperUtil.mapAll(
-                repository.findAll(), ProductDomain.class
-        );
+        return objectMapperUtil.mapAll(repository.findAll(), ProductDomain.class);
     }
 
     @SneakyThrows
     public ProductDomain findById(UUID productId) {
-        return repository.findById(productId)
-                .map(objectMapperUtil.mapFn(ProductDomain.class))
-                .orElseThrow(ChangeSetPersister.NotFoundException::new);
+        return repository.findById(productId).map(objectMapperUtil.mapFn(ProductDomain.class)).orElseThrow(ChangeSetPersister.NotFoundException::new);
+    }
+
+    public List<ProductDomain> getAllProductsByCategoryId(UUID categoryId) {
+        return objectMapperUtil.mapAll(repository.findByCategory_CategoryId(categoryId), ProductDomain.class);
+    }
+
+    public List<ProductDomain> getAllByProductName(String name){
+        return objectMapperUtil.mapAll(repository.findByName(name), ProductDomain.class);
+    }
+
+    public List<ProductDomain> getAllProductsByRestaurantId(UUID restaurantId) {
+        return objectMapperUtil.mapAll(repository.findByRestaurant_RestaurantId(restaurantId), ProductDomain.class);
     }
 
     public ProductDomain create(final ProductDomain productDomain) {
@@ -40,9 +47,7 @@ public class ProductService {
 
         productValidator.CheckNegativePrice(productDomain.getPrice());
 
-        return objectMapperUtil.map(
-                repository.save(product), ProductDomain.class
-        );
+        return objectMapperUtil.map(repository.save(product), ProductDomain.class);
     }
 
     public void delete(final UUID productId) {
@@ -60,7 +65,7 @@ public class ProductService {
         return objectMapperUtil.map(product, ProductDomain.class);
     }
 
-    public ProductDomain updateImage(final ProductDomain updateProductDomain){
+    public ProductDomain updateImage(final ProductDomain updateProductDomain) {
         var productDomain = findById(updateProductDomain.getProductId());
 
         productDomain.setImage(updateProductDomain.getImage());

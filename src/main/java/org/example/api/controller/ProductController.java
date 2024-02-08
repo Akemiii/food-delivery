@@ -1,5 +1,6 @@
 package org.example.api.controller;
 
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.example.api.dto.request.product.CreateProductRequest;
 import org.example.api.dto.request.product.UpdateProductImageRequest;
@@ -38,35 +39,39 @@ public class ProductController {
     }
 
     @GetMapping("category/{categoryId}")
-    public List<ProductResponse> getByCategory(@PathVariable UUID categoryId){
+    public List<ProductResponse> getByCategory(@PathVariable UUID categoryId) {
+        return objectMapperUtil.mapAll(service.getAllProductsByCategoryId(categoryId), ProductResponse.class);
+    }
 
+    @GetMapping("search/{name}")
+    public List<ProductResponse> getAllByProductName(@PathVariable String name){
+        return objectMapperUtil.mapAll(service.getAllByProductName(name), ProductResponse.class);
+    }
+
+    @GetMapping("restaurant/{restaurantId}")
+    public List<ProductResponse> getAllByRestaurant(@PathVariable UUID restaurantId) {
+        return objectMapperUtil.mapAll(service.getAllProductsByRestaurantId(restaurantId), ProductResponse.class);
     }
 
 
     @PostMapping("restaurant/{restaurantId}")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductResponse create(@RequestBody @Validated CreateProductRequest request) {
-        final var product = service.create(
-                productDomainFactory.toCreate(request)
-        );
+        final var product = service.create(productDomainFactory.toCreate(request));
 
         return objectMapperUtil.map(product, ProductResponse.class);
     }
 
     @PutMapping("{productId}/details")
     public ProductResponse updateDetails(@PathVariable UUID productId, UpdateProductRequest request) {
-        final var product = service.update(
-                productDomainFactory.toUpdateDetails(productId, request)
-        );
+        final var product = service.update(productDomainFactory.toUpdateDetails(productId, request));
 
         return objectMapperUtil.map(product, ProductResponse.class);
     }
 
     @PutMapping("{productId}/image")
     public ProductResponse updateImage(@PathVariable UUID productId, UpdateProductImageRequest request) {
-        final var product = service.updateImage(
-                productDomainFactory.toUpdateImage(productId, request)
-        );
+        final var product = service.updateImage(productDomainFactory.toUpdateImage(productId, request));
 
         return objectMapperUtil.map(product, ProductResponse.class);
     }

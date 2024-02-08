@@ -10,7 +10,4 @@ Para instalar as dependências utilizar o comando: mvn clean install
 Para inicializar utilizar o comando: mvn spring-boot:run
 
 # TODO
-
-[User module]
-- Administrator module [ ] 
-- Customer module [ ]
+ Atualizar aqui... 
