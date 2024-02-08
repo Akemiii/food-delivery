@@ -2,6 +2,7 @@ package org.example.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.api.dto.request.product.CreateProductRequest;
+import org.example.api.dto.request.product.UpdateProductImageRequest;
 import org.example.api.dto.request.product.UpdateProductRequest;
 import org.example.api.dto.response.product.ProductResponse;
 import org.example.factory.ProductDomainFactory;
@@ -36,7 +37,13 @@ public class ProductController {
         return objectMapperUtil.map(product, ProductResponse.class);
     }
 
-    @PostMapping
+    @GetMapping("category/{categoryId}")
+    public List<ProductResponse> getByCategory(@PathVariable UUID categoryId){
+
+    }
+
+
+    @PostMapping("restaurant/{restaurantId}")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductResponse create(@RequestBody @Validated CreateProductRequest request) {
         final var product = service.create(
@@ -46,10 +53,19 @@ public class ProductController {
         return objectMapperUtil.map(product, ProductResponse.class);
     }
 
-    @PutMapping("{productId}")
-    public ProductResponse update(@PathVariable UUID productId, UpdateProductRequest request) {
+    @PutMapping("{productId}/details")
+    public ProductResponse updateDetails(@PathVariable UUID productId, UpdateProductRequest request) {
         final var product = service.update(
-                productDomainFactory.toUpdate(productId, request)
+                productDomainFactory.toUpdateDetails(productId, request)
+        );
+
+        return objectMapperUtil.map(product, ProductResponse.class);
+    }
+
+    @PutMapping("{productId}/image")
+    public ProductResponse updateImage(@PathVariable UUID productId, UpdateProductImageRequest request) {
+        final var product = service.updateImage(
+                productDomainFactory.toUpdateImage(productId, request)
         );
 
         return objectMapperUtil.map(product, ProductResponse.class);

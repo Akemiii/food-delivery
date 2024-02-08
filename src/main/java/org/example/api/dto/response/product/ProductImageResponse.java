@@ -1,4 +1,4 @@
-package org.example.api.dto.response.category;
+package org.example.api.dto.response.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,5 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryTitleResponse {
+public class ProductImageResponse {
+    private String image;
 }

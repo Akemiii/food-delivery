@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.persistence.entity.Category;
+
 import java.util.UUID;
 
 @Getter
@@ -16,4 +18,5 @@ public class ProductResponse {
     private String description;
     private Float price;
     private String image;
+    private Category category;
 }

@@ -60,4 +60,14 @@ public class ProductService {
         return objectMapperUtil.map(product, ProductDomain.class);
     }
 
+    public ProductDomain updateImage(final ProductDomain updateProductDomain){
+        var productDomain = findById(updateProductDomain.getProductId());
+
+        productDomain.setImage(updateProductDomain.getImage());
+
+        final var product = repository.save(objectMapperUtil.map(productDomain, Product.class));
+
+        return objectMapperUtil.map(product, ProductDomain.class);
+    }
+
 }

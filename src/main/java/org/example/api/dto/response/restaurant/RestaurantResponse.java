@@ -5,11 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.persistence.entity.Category;
-import org.example.persistence.entity.Review;
 import org.example.util.RestaurantStatus;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -31,4 +29,5 @@ public class RestaurantResponse {
     private String reference;
     private LocalDateTime createdAt;
     private Category category;
+
 }

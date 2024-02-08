@@ -1,7 +1,7 @@
 package org.example.domain;
 
 import lombok.*;
-import org.example.persistence.entity.ProductCategory;
+import org.example.persistence.entity.Category;
 import org.example.persistence.entity.Restaurant;
 
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ public class ProductDomain {
     private String description;
     private String image;
     private BigDecimal price;
-    private ProductCategory productCategory;
+    private Category category;
     private Restaurant restaurant;
     private LocalDateTime cratedAt;
 }

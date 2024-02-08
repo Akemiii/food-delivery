@@ -27,9 +27,6 @@ public class ProductValidator {
         if (nonNull(updateDomain.getName()) && !updateDomain.getName().isEmpty())
             domain.setName(updateDomain.getName());
 
-        if (nonNull(updateDomain.getImage()) && !updateDomain.getImage().isEmpty())
-            domain.setImage(updateDomain.getImage());
-
         if (nonNull(updateDomain.getDescription()) && !updateDomain.getDescription().isEmpty())
             domain.setDescription(updateDomain.getDescription());
 
