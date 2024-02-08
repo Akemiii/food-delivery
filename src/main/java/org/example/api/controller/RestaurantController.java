@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.api.dto.request.Restaurant.CreateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantStatusRequest;
 import org.example.api.dto.response.restaurant.RestaurantResponse;
+import org.example.api.dto.response.restaurant.RestaurantStatusResponse;
 import org.example.factory.RestaurantDomainFactory;
 import org.example.service.RestaurantService;
 import org.example.util.ObjectMapperUtil;
@@ -47,13 +48,13 @@ public class RestaurantController {
     }
 
     @PutMapping("{restaurantId}/status")
-    public RestaurantResponse update(@PathVariable UUID restaurantId,  @RequestBody @Validated UpdateRestaurantStatusRequest request) {
+    public RestaurantStatusResponse update(@PathVariable UUID restaurantId, @RequestBody @Validated UpdateRestaurantStatusRequest request) {
 
         final var restaurant = service.updateStatus(
                 domainFactory.toUpdate(restaurantId, request)
         );
 
-        return objectMapperUtil.map(restaurant, RestaurantResponse.class);
+        return objectMapperUtil.map(restaurant, RestaurantStatusResponse.class);
     }
 
 }
