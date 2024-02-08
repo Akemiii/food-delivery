@@ -26,7 +26,6 @@ public class Restaurant {
     private String name;
     private String description;
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10) DEFAULT 'CLOSED'")
     private RestaurantStatus status;
     private BigDecimal delivery_tax;
     private String city;
