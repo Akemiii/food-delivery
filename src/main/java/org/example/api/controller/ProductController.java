@@ -44,7 +44,7 @@ public class ProductController {
     }
 
     @GetMapping("search/{name}")
-    public List<ProductResponse> getAllByProductName(@PathVariable String name){
+    public List<ProductResponse> getAllByProductName(@PathVariable String name) {
         return objectMapperUtil.mapAll(service.getAllByProductName(name), ProductResponse.class);
     }
 

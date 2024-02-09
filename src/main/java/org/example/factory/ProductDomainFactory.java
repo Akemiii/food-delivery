@@ -27,6 +27,7 @@ public class ProductDomainFactory {
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
+                .category(request.getCategory())
                 .build();
     }
 

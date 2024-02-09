@@ -34,7 +34,7 @@ public class ProductService {
         return objectMapperUtil.mapAll(repository.findByCategory_CategoryId(categoryId), ProductDomain.class);
     }
 
-    public List<ProductDomain> getAllByProductName(String name){
+    public List<ProductDomain> getAllByProductName(String name) {
         return objectMapperUtil.mapAll(repository.findByName(name), ProductDomain.class);
     }
 
