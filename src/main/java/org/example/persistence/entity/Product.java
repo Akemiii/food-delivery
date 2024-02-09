@@ -1,13 +1,11 @@
 package org.example.persistence.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.util.ProductStatus;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Table(name = "product")
@@ -35,5 +33,10 @@ public class Product {
     @CreationTimestamp
     private LocalDateTime createdAt;
     private boolean needChoices;//Todo:: Atualizar o cadastro e o update do produto
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private CatalogMenu catalogMenu;
 
 }

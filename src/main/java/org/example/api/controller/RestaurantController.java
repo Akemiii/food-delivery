@@ -1,9 +1,11 @@
 package org.example.api.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.example.api.dto.request.Restaurant.CreateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantStatusRequest;
+import org.example.api.dto.response.restaurant.RestaurantCatalogResponse;
 import org.example.api.dto.response.restaurant.RestaurantResponse;
 import org.example.api.dto.response.restaurant.RestaurantStatusResponse;
 import org.example.factory.RestaurantDomainFactory;
@@ -70,4 +72,11 @@ public class RestaurantController {
         return objectMapperUtil.map(restaurant, RestaurantResponse.class);
     }
 
+    @Operation(summary = "Get catalog products by restaurantId")
+    @GetMapping("{restaurantId}/catalog")
+    public RestaurantCatalogResponse getCatalog(@PathVariable UUID restaurantId){
+
+        return null;
+    }
+;
 }
