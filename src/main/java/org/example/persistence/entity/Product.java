@@ -36,7 +36,4 @@ public class Product {
     private LocalDateTime createdAt;
     private boolean needChoices;//Todo:: Atualizar o cadastro e o update do produto
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Choice> choices;
-
 }

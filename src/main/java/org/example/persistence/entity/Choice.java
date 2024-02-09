@@ -26,9 +26,4 @@ public class Choice {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @OneToMany(mappedBy = "choice", cascade = CascadeType.ALL)
-    private List<Additionalitems> additionalitems;
-
-
-
 }
