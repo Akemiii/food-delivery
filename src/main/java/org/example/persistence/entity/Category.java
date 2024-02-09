@@ -20,4 +20,10 @@ public class Category {
     @Column(name = "category_id")
     private UUID categoryId;
     private String title;
+
+    @OneToMany(mappedBy = "category")
+    private List<Restaurant> restaurants;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 }

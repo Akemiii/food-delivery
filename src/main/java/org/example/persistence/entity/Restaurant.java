@@ -41,4 +41,11 @@ public class Restaurant {
     @ManyToOne
     @JoinColumn(name= "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<CatalogMenu> catalogMenus;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<Product> products;
+
 }

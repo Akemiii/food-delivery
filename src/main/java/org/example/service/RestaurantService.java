@@ -2,8 +2,17 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.example.api.dto.response.restaurant.RestaurantCatalogResponse;
+import org.example.domain.CatalogMenuDomain;
+import org.example.domain.ChoiceDomain;
+import org.example.domain.ProductDomain;
 import org.example.domain.RestaurantDomain;
+import org.example.persistence.entity.CatalogMenu;
+import org.example.persistence.entity.Product;
 import org.example.persistence.entity.Restaurant;
+import org.example.persistence.repository.CatalogMenuRepository;
+import org.example.persistence.repository.ChoiceRepository;
+import org.example.persistence.repository.ProductRepository;
 import org.example.persistence.repository.RestaurantRepository;
 import org.example.util.ObjectMapperUtil;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -11,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -20,6 +30,7 @@ import static java.util.Objects.nonNull;
 @RequiredArgsConstructor
 public class RestaurantService {
     private final RestaurantRepository repository;
+    private final CatalogMenuRepository catalogMenuRepository;
     private final ObjectMapperUtil objectMapperUtil;
 
     public List<RestaurantDomain> getAllRestaurants() {
@@ -79,4 +90,15 @@ public class RestaurantService {
     public List<RestaurantDomain> getAllRestaurantsByCategoryTitle(String title) {
         return objectMapperUtil.mapAll(repository.findByCategory_title(title), RestaurantDomain.class);
     }
+
+    public RestaurantCatalogResponse getCatalog(UUID restaurantId) {
+
+        return null;
+    }
+
+    private List<CatalogMenuDomain> getAllCatalogsMenuByRestaurantId(UUID restaurantId){
+        return objectMapperUtil.mapAll(catalogMenuRepository.findByRestaurant_RestaurantId(restaurantId), CatalogMenuDomain.class);
+    }
+
+
 }

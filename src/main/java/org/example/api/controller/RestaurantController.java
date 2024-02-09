@@ -75,8 +75,7 @@ public class RestaurantController {
     @Operation(summary = "Get catalog products by restaurantId")
     @GetMapping("{restaurantId}/catalog")
     public RestaurantCatalogResponse getCatalog(@PathVariable UUID restaurantId){
-
-        return null;
+        return service.getCatalog(restaurantId);
     }
 ;
 }

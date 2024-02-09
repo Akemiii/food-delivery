@@ -26,4 +26,7 @@ public class Choice {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @OneToMany(mappedBy = "choice")
+    private List<Additionalitems> additionalitems;
+
 }

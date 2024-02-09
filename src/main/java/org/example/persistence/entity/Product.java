@@ -6,6 +6,7 @@ import org.example.util.ProductStatus;
 import org.hibernate.annotations.CreationTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "product")
@@ -38,5 +39,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "id")
     private CatalogMenu catalogMenu;
+
+    @OneToMany(mappedBy = "product")
+    private List<Choice> choices;
 
 }
