@@ -36,3 +36,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/.idea/jpa-buddy.xml
+/.idea/misc.xml
