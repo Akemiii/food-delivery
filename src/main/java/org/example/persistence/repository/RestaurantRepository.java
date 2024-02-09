@@ -10,4 +10,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, UUID> {
 
     List<Restaurant> findByCategory_categoryId(UUID categoryId);
 
+    List<Restaurant> findByCategory_title(String title);
+
 }

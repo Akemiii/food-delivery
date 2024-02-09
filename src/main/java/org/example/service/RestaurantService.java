@@ -9,6 +9,7 @@ import org.example.util.ObjectMapperUtil;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -67,9 +68,15 @@ public class RestaurantService {
         return objectMapperUtil.map(restaurant, RestaurantDomain.class);
     }
 
-    private <T> void updateIfNotNull(T newValue, Consumer<T> setter){
-        if(nonNull(newValue))
-            setter.accept(newValue);
+    private <T> void updateIfNotNull(T newValue, Consumer<T> setter) {
+        if (nonNull(newValue)) setter.accept(newValue);
     }
 
+    public List<RestaurantDomain> getAllRestaurantsByCategoryId(UUID categoryId) {
+        return objectMapperUtil.mapAll(repository.findByCategory_categoryId(categoryId), RestaurantDomain.class);
+    }
+
+    public List<RestaurantDomain> getAllRestaurantsByCategoryTitle(String title) {
+        return objectMapperUtil.mapAll(repository.findByCategory_title(title), RestaurantDomain.class);
+    }
 }

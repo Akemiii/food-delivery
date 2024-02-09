@@ -1,6 +1,7 @@
 package org.example.api.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.example.api.dto.response.order.OrderResponse;
 import org.example.service.OrderService;
@@ -20,6 +21,7 @@ public class OrderController {
     private final ObjectMapperUtil objectMapperUtil;
     private final OrderService service;
 
+    @Operation(summary = "Get a order  by its id")
     @GetMapping("{orderId}")
     public OrderResponse get(@PathVariable UUID orderId) {
         final var order = service.findById(orderId);

@@ -42,6 +42,10 @@ public class ProductService {
         return objectMapperUtil.mapAll(repository.findByRestaurant_name(name), ProductDomain.class);
     }
 
+    public List<ProductDomain> getAllByCategoryTitle(String categoryTitle){
+        return objectMapperUtil.mapAll(repository.findByCategory_title(categoryTitle), ProductDomain.class);
+    }
+
     public List<ProductDomain> getAllProductsByRestaurantId(UUID restaurantId) {
         return objectMapperUtil.mapAll(repository.findByRestaurant_RestaurantId(restaurantId), ProductDomain.class);
     }

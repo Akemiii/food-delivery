@@ -16,7 +16,7 @@ import java.util.List;
 
 import static java.util.Objects.nonNull;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @Value("${spring.application.name}")
