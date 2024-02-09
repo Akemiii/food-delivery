@@ -50,36 +50,17 @@ public class RestaurantService {
     public RestaurantDomain updateDetails(final RestaurantDomain domain) {
         var restaurantDomain = findById(domain.getRestaurantId());
 
-        if (nonNull(domain.getName()) && !domain.getName().isEmpty()) restaurantDomain.setName(domain.getName());
-
-        if (nonNull(domain.getDescription()) && !domain.getDescription().isEmpty())
-            restaurantDomain.setDescription(domain.getDescription());
-
-        if (nonNull(domain.getDelivery_tax())) restaurantDomain.setDelivery_tax(domain.getDelivery_tax());
-
-        if (nonNull(domain.getCity()) && !domain.getCity().isEmpty())
-            restaurantDomain.setCity(domain.getCity());
-
-        if (nonNull(domain.getState()) && !domain.getState().isEmpty())
-            restaurantDomain.setState(domain.getState());
-
-        if (nonNull(domain.getNeighborhood()) && !domain.getNeighborhood().isEmpty())
-            restaurantDomain.setNeighborhood(domain.getNeighborhood());
-
-        if (nonNull(domain.getStreet()) && !domain.getStreet().isEmpty())
-            restaurantDomain.setStreet(domain.getStreet());
-
-        if (nonNull(domain.getNumber()) && !domain.getNumber().isEmpty())
-            restaurantDomain.setNumber(domain.getNumber());
-
-        if (nonNull(domain.getComplement()) && !domain.getComplement().isEmpty())
-            restaurantDomain.setComplement(domain.getComplement());
-
-        if (nonNull(domain.getReference()) && !domain.getReference().isEmpty())
-            restaurantDomain.setReference(domain.getReference());
-
-        if (nonNull(domain.getCategory()))
-            restaurantDomain.setCategory(domain.getCategory());
+        updateIfNotNull(domain.getName(), restaurantDomain::setName);
+        updateIfNotNull(domain.getDescription(), restaurantDomain::setDescription);
+        updateIfNotNull(domain.getDelivery_tax(), restaurantDomain::setDelivery_tax);
+        updateIfNotNull(domain.getCity(), restaurantDomain::setCity);
+        updateIfNotNull(domain.getState(), restaurantDomain::setState);
+        updateIfNotNull(domain.getNeighborhood(), restaurantDomain::setNeighborhood);
+        updateIfNotNull(domain.getStreet(), restaurantDomain::setStreet);
+        updateIfNotNull(domain.getNumber(), restaurantDomain::setNumber);
+        updateIfNotNull(domain.getComplement(), restaurantDomain::setComplement);
+        updateIfNotNull(domain.getReference(), restaurantDomain::setReference);
+        updateIfNotNull(domain.getCategory(), restaurantDomain::setCategory);
 
         final var restaurant = repository.save(objectMapperUtil.map(restaurantDomain, Restaurant.class));
 
@@ -87,7 +68,8 @@ public class RestaurantService {
     }
 
     private <T> void updateIfNotNull(T newValue, Consumer<T> setter){
-
+        if(nonNull(newValue))
+            setter.accept(newValue);
     }
 
 }

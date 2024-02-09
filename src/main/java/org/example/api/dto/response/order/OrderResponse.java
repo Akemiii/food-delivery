@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.api.dto.response.product.ProductResponse;
+import org.example.util.OrderStatus;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -21,7 +23,7 @@ public class OrderResponse {
     private String name;
     private String phoneNumber;
     private String totalValue;
-    private Boolean status;
     private LocalDateTime createdAt;
+    private OrderStatus status;
     private List<ProductResponse> products;
 }
