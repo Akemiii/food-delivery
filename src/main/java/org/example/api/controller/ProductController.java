@@ -48,6 +48,11 @@ public class ProductController {
         return objectMapperUtil.mapAll(service.getAllByProductName(name), ProductResponse.class);
     }
 
+    @GetMapping("Search/{restaurantName}")
+    public List<ProductResponse> getAllByRestaurantName(@PathVariable String restaurantName){
+        return objectMapperUtil.mapAll(service.getAllByRestaurantName(restaurantName), ProductResponse.class);
+    }
+
     @GetMapping("restaurant/{restaurantId}")
     public List<ProductResponse> getAllByRestaurant(@PathVariable UUID restaurantId) {
         return objectMapperUtil.mapAll(service.getAllProductsByRestaurantId(restaurantId), ProductResponse.class);
