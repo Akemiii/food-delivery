@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Table(name="product")
+@Table(name = "product")
 @Entity
 @Builder
 @Getter
@@ -28,12 +28,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
-
     @CreationTimestamp
     private LocalDateTime createdAt;
+    private boolean needChoices;//Todo:: Atualizar o cadastro e o update do produto
+
 
 }
