@@ -1,19 +1,13 @@
 package org.example.api.dto.request.Restaurant;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.persistence.entity.Category;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class CreateRestaurantRequest {
-
-    @NotNull
-    @NotEmpty
+public class UpdateRestaurantRequest {
     private String name;
     private String description;
     private BigDecimal delivery_tax;
@@ -24,5 +18,4 @@ public class CreateRestaurantRequest {
     private String number;
     private String complement;
     private String reference;
-    private Category category;
 }

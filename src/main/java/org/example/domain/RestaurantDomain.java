@@ -29,7 +29,6 @@ public class RestaurantDomain {
     private String complement;
     private String reference;
     private LocalDateTime createdAt;
-//    private List<Review> reviews;
     private Category category;
 
 
