@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import static java.util.Objects.nonNull;
 
@@ -83,6 +84,10 @@ public class RestaurantService {
         final var restaurant = repository.save(objectMapperUtil.map(restaurantDomain, Restaurant.class));
 
         return objectMapperUtil.map(restaurant, RestaurantDomain.class);
+    }
+
+    private <T> void updateIfNotNull(T newValue, Consumer<T> setter){
+
     }
 
 }
