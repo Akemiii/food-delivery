@@ -19,7 +19,7 @@ public class ProductDomain {
     private String description;
     private String image;
     private BigDecimal price;
-    private Category category;
+    private CategoryDomain category;
     private Restaurant restaurant;
     private LocalDateTime cratedAt;
 }

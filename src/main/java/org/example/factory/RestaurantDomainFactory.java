@@ -4,6 +4,7 @@ import org.example.api.dto.request.Restaurant.CreateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantStatusRequest;
 import org.example.domain.RestaurantDomain;
+import org.example.util.RestaurantStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -14,6 +15,7 @@ public class RestaurantDomainFactory {
         return RestaurantDomain.builder()
                 .name(request.getName())
                 .description(request.getDescription())
+                .status(RestaurantStatus.CLOSED)
                 .delivery_tax(request.getDelivery_tax())
                 .city(request.getCity())
                 .state(request.getState())
@@ -28,6 +30,7 @@ public class RestaurantDomainFactory {
 
     public RestaurantDomain toUpdateDetails(final UUID restaurantId, final UpdateRestaurantRequest request) {
         return RestaurantDomain.builder()
+                .restaurantId(restaurantId)
                 .name(request.getName())
                 .description(request.getDescription())
                 .delivery_tax(request.getDelivery_tax())

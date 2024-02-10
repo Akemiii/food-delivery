@@ -8,8 +8,8 @@ import java.util.UUID;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, UUID> {
 
-    List<Restaurant> findByCategory_categoryId(UUID categoryId);
+    List<Restaurant> findByMainCategory_id(UUID categoryId);
 
-    List<Restaurant> findByCategory_title(String title);
+    List<Restaurant> findByMainCategory_title(String title);
 
 }

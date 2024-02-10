@@ -26,7 +26,7 @@ public class Restaurant {
     private String name;
     private String description;
     @Enumerated(EnumType.STRING)
-    private RestaurantStatus status;
+    private RestaurantStatus status = RestaurantStatus.CLOSED;
     private BigDecimal delivery_tax;
     private String city;
     private String state;
@@ -40,12 +40,15 @@ public class Restaurant {
 
     @ManyToOne
     @JoinColumn(name= "category_id")
-    private Category category;
+    private MainCategory mainCategory;
 
     @OneToMany(mappedBy = "restaurant")
     private List<CatalogMenu> catalogMenus;
 
     @OneToMany(mappedBy = "restaurant")
     private List<Product> products;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<Review> reviews;
 
 }

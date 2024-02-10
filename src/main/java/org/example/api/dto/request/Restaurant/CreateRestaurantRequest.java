@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.domain.CategoryDomain;
 import org.example.persistence.entity.Category;
 
 import java.math.BigDecimal;
@@ -24,5 +25,5 @@ public class CreateRestaurantRequest {
     private String number;
     private String complement;
     private String reference;
-    private Category category;
+    private CategoryDomain category;
 }

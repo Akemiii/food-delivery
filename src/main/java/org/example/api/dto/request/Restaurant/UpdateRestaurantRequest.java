@@ -3,6 +3,7 @@ package org.example.api.dto.request.Restaurant;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.domain.CategoryDomain;
 import org.example.persistence.entity.Category;
 
 import java.math.BigDecimal;
@@ -29,5 +30,5 @@ public class UpdateRestaurantRequest {
     private String complement;
     @NotEmpty
     private String reference;
-    private Category category;
+    private CategoryDomain category;
 }

@@ -30,7 +30,6 @@ import static java.util.Objects.nonNull;
 @RequiredArgsConstructor
 public class RestaurantService {
     private final RestaurantRepository repository;
-    private final CatalogMenuRepository catalogMenuRepository;
     private final ObjectMapperUtil objectMapperUtil;
 
     public List<RestaurantDomain> getAllRestaurants() {
@@ -84,20 +83,15 @@ public class RestaurantService {
     }
 
     public List<RestaurantDomain> getAllRestaurantsByCategoryId(UUID categoryId) {
-        return objectMapperUtil.mapAll(repository.findByCategory_categoryId(categoryId), RestaurantDomain.class);
+        return objectMapperUtil.mapAll(repository.findByMainCategory_id(categoryId), RestaurantDomain.class);
     }
 
     public List<RestaurantDomain> getAllRestaurantsByCategoryTitle(String title) {
-        return objectMapperUtil.mapAll(repository.findByCategory_title(title), RestaurantDomain.class);
+        return objectMapperUtil.mapAll(repository.findByMainCategory_title(title), RestaurantDomain.class);
     }
 
-    public RestaurantCatalogResponse getCatalog(UUID restaurantId) {
-
-        return null;
-    }
-
-    private List<CatalogMenuDomain> getAllCatalogsMenuByRestaurantId(UUID restaurantId){
-        return objectMapperUtil.mapAll(catalogMenuRepository.findByRestaurant_RestaurantId(restaurantId), CatalogMenuDomain.class);
+    public RestaurantDomain getCatalog(UUID restaurantId) {
+        return objectMapperUtil.map(repository.findById(restaurantId), RestaurantDomain.class);
     }
 
 

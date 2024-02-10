@@ -1,7 +1,6 @@
 package org.example.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.example.api.dto.request.product.CreateProductRequest;
 import org.example.api.dto.request.product.UpdateProductImageRequest;

@@ -44,7 +44,7 @@ public class RestaurantController {
         return objectMapperUtil.mapAll(service.getAllRestaurantsByCategoryId(categoryId), RestaurantResponse.class);
     }
 
-    @GetMapping("category/{title}")
+    @GetMapping("category/search/{title}")
     public List<RestaurantResponse> getAllRestaurantsByCategoryTitle(@PathVariable String title) {
         return objectMapperUtil.mapAll(service.getAllRestaurantsByCategoryTitle(title), RestaurantResponse.class);
     }
@@ -75,7 +75,7 @@ public class RestaurantController {
     @Operation(summary = "Get catalog products by restaurantId")
     @GetMapping("{restaurantId}/catalog")
     public RestaurantCatalogResponse getCatalog(@PathVariable UUID restaurantId){
-        return service.getCatalog(restaurantId);
+        return objectMapperUtil.map(service.getCatalog(restaurantId), RestaurantCatalogResponse.class);
     }
 ;
 }
