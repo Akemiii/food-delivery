@@ -40,8 +40,8 @@ public class RestaurantController {
     }
 
     @GetMapping("category/{categoryId}")
-    public List<RestaurantResponse> getAllRestaurantsByCategoryId(@PathVariable UUID categoryId) {
-        return objectMapperUtil.mapAll(service.getAllRestaurantsByCategoryId(categoryId), RestaurantResponse.class);
+    public List<RestaurantResponse> getAllRestaurantsByMainCategoryId(@PathVariable UUID categoryId) {
+        return objectMapperUtil.mapAll(service.getAllRestaurantsByMainCategoryId(categoryId), RestaurantResponse.class);
     }
 
     @GetMapping("category/search/{title}")

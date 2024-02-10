@@ -29,7 +29,7 @@ public class RestaurantDomain {
     private String complement;
     private String reference;
     private LocalDateTime createdAt;
-    private CategoryDomain category;
+    private MainCategoryDomain category;
 
 
 }

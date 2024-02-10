@@ -25,5 +25,4 @@ public class CreateRestaurantRequest {
     private String number;
     private String complement;
     private String reference;
-    private CategoryDomain category;
 }

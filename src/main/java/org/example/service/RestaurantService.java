@@ -82,8 +82,8 @@ public class RestaurantService {
         if (nonNull(newValue)) setter.accept(newValue);
     }
 
-    public List<RestaurantDomain> getAllRestaurantsByCategoryId(UUID categoryId) {
-        return objectMapperUtil.mapAll(repository.findByMainCategory_id(categoryId), RestaurantDomain.class);
+    public List<RestaurantDomain> getAllRestaurantsByMainCategoryId(UUID id) {
+        return objectMapperUtil.mapAll(repository.findByMainCategory_id(id), RestaurantDomain.class);
     }
 
     public List<RestaurantDomain> getAllRestaurantsByCategoryTitle(String title) {

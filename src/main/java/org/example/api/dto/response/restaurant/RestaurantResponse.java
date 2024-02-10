@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.Main;
 import org.example.api.dto.response.category.CategoryResponse;
+import org.example.domain.MainCategoryDomain;
 import org.example.persistence.entity.Category;
+import org.example.persistence.entity.MainCategory;
 import org.example.util.RestaurantStatus;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -29,6 +32,6 @@ public class RestaurantResponse {
     private String complement;
     private String reference;
     private LocalDateTime createdAt;
-    private CategoryResponse category;
+    private MainCategoryDomain category;
 
 }

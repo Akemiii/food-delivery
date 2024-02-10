@@ -30,5 +30,4 @@ public class UpdateRestaurantRequest {
     private String complement;
     @NotEmpty
     private String reference;
-    private CategoryDomain category;
 }

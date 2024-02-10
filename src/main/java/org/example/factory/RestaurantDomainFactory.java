@@ -24,7 +24,6 @@ public class RestaurantDomainFactory {
                 .number(request.getNumber())
                 .complement(request.getComplement())
                 .reference(request.getReference())
-                .category(request.getCategory())
                 .build();
     }
 
@@ -41,7 +40,6 @@ public class RestaurantDomainFactory {
                 .number(request.getNumber())
                 .complement(request.getComplement())
                 .reference(request.getReference())
-                .category(request.getCategory())
                 .build();
     }
 
