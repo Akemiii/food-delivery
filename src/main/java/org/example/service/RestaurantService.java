@@ -2,25 +2,13 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.example.api.dto.response.restaurant.RestaurantCatalogResponse;
-import org.example.domain.CatalogMenuDomain;
-import org.example.domain.ChoiceDomain;
-import org.example.domain.ProductDomain;
 import org.example.domain.RestaurantDomain;
-import org.example.persistence.entity.CatalogMenu;
-import org.example.persistence.entity.Product;
 import org.example.persistence.entity.Restaurant;
-import org.example.persistence.repository.CatalogMenuRepository;
-import org.example.persistence.repository.ChoiceRepository;
-import org.example.persistence.repository.ProductRepository;
 import org.example.persistence.repository.RestaurantRepository;
 import org.example.util.ObjectMapperUtil;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -71,7 +59,6 @@ public class RestaurantService {
         updateIfNotNull(domain.getNumber(), restaurantDomain::setNumber);
         updateIfNotNull(domain.getComplement(), restaurantDomain::setComplement);
         updateIfNotNull(domain.getReference(), restaurantDomain::setReference);
-        updateIfNotNull(domain.getCategory(), restaurantDomain::setCategory);
 
         final var restaurant = repository.save(objectMapperUtil.map(restaurantDomain, Restaurant.class));
 
@@ -92,6 +79,12 @@ public class RestaurantService {
 
     public RestaurantDomain getCatalog(UUID restaurantId) {
         return objectMapperUtil.map(repository.findById(restaurantId), RestaurantDomain.class);
+    }
+
+    //Crete menu
+    public RestaurantDomain createCatalog(UUID restaurantId){
+    //TODO:: estudar as regras de négocios. Será possível cadastrar um produto e os itens adicionais, enquanto cadastra o catalogo, ou se existir produtos cadastro no restaurante, será apresentado a opção para escolher os produtos para fazer parte do catalogo
+        return null;
     }
 
 

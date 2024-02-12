@@ -21,11 +21,9 @@ public class Choice {
     private String name;
     private int min;
     private int max;
-
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-
     @OneToMany(mappedBy = "choice")
     private List<Additionalitems> additionalitems;
 

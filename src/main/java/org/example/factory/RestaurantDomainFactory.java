@@ -27,6 +27,8 @@ public class RestaurantDomainFactory {
                 .build();
     }
 
+
+
     public RestaurantDomain toUpdateDetails(final UUID restaurantId, final UpdateRestaurantRequest request) {
         return RestaurantDomain.builder()
                 .restaurantId(restaurantId)

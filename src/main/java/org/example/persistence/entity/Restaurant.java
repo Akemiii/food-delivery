@@ -40,9 +40,7 @@ public class Restaurant {
 
     @ManyToOne
     @JoinColumn(name= "category_id")
-    private MainCategory mainCategory; /*TODO remover de todos os mapeamentos de restaurantes a category
-
-    */
+    private MainCategory mainCategory;
 
     @OneToMany(mappedBy = "restaurant")
     private List<CatalogMenu> catalogMenus;

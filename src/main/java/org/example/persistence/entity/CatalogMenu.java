@@ -2,7 +2,6 @@ package org.example.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.api.dto.response.restaurant.RestaurantCatalogResponse;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +17,7 @@ public class CatalogMenu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private UUID catalogId;
     private String name;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")

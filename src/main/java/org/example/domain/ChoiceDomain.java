@@ -2,6 +2,7 @@ package org.example.domain;
 
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -15,5 +16,6 @@ public class ChoiceDomain {
     private String name;
     private int min;
     private int max;
+    private List<AdditionalItensDomain> additionalItens;
 
 }

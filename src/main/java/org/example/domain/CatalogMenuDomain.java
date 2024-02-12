@@ -1,8 +1,10 @@
 package org.example.domain;
 
 import lombok.*;
+import org.example.api.dto.request.product.CreateProductRequest;
 import org.example.persistence.entity.Restaurant;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -11,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CatalogMenuDomain {
-    private UUID id;
+    private UUID catalogId;
     private String name;
-//    private Restaurant restaurant;
+    private List<CreateProductRequest> itens;
 }

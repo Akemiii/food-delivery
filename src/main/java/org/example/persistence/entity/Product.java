@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.util.ProductStatus;
 import org.hibernate.annotations.CreationTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,9 +38,8 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "catalog_id")
     private CatalogMenu catalogMenu;
-
     @OneToMany(mappedBy = "product")
     private List<Choice> choices;
 

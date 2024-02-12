@@ -55,7 +55,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Get a list of products by restaurants name")
-    @GetMapping("search/{restaurantName}")
+    @GetMapping("restaurant/search/{restaurantName}")
     public List<ProductResponse> getAllByRestaurantName(@PathVariable String restaurantName) {
         return objectMapperUtil.mapAll(service.getAllByRestaurantName(restaurantName), ProductResponse.class);
     }
@@ -67,7 +67,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Get a list of products by category title")
-    @GetMapping("category/{categoryTitle}")
+    @GetMapping("category/search/{categoryTitle}")
     public List<ProductResponse> getAllByCategoryTitle(@PathVariable String categoryTitle) {
         return objectMapperUtil.mapAll(service.getAllByCategoryTitle(categoryTitle), ProductResponse.class);
     }
@@ -75,11 +75,13 @@ public class ProductController {
     @Operation(summary = "Create a product to specific restaurant by restaurants id")
     @PostMapping("restaurant/{restaurantId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponse create(@RequestBody @Validated CreateProductRequest request) {
-        final var product = service.create(productDomainFactory.toCreate(request));
+    public ProductResponse createProduct(@PathVariable UUID restaurantId ,@RequestBody @Validated CreateProductRequest request) {
+        final var product = service.create(restaurantId, productDomainFactory.toCreate(request));
 
         return objectMapperUtil.map(product, ProductResponse.class);
     }
+
+    //ADD product status update
 
     @Operation(summary = "Update products details by its id")
     @PutMapping("{productId}/details")
