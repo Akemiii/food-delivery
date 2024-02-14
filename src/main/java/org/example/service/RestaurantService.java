@@ -2,6 +2,7 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.example.domain.CatalogMenuDomain;
 import org.example.domain.RestaurantDomain;
 import org.example.persistence.entity.Restaurant;
 import org.example.persistence.repository.RestaurantRepository;
@@ -82,8 +83,11 @@ public class RestaurantService {
     }
 
     //Crete menu
-    public RestaurantDomain createCatalog(UUID restaurantId){
+    public List<CatalogMenuDomain> createCatalog(final CatalogMenuDomain catalogMenuDomain){
     //TODO:: estudar as regras de négocios. Será possível cadastrar um produto e os itens adicionais, enquanto cadastra o catalogo, ou se existir produtos cadastro no restaurante, será apresentado a opção para escolher os produtos para fazer parte do catalogo
+
+
+
         return null;
     }
 

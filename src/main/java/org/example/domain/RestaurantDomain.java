@@ -1,6 +1,7 @@
 package org.example.domain;
 
 import lombok.*;
+import org.example.persistence.entity.CatalogMenu;
 import org.example.persistence.entity.Category;
 import org.example.persistence.entity.Review;
 import org.example.util.RestaurantStatus;
@@ -30,6 +31,5 @@ public class RestaurantDomain {
     private String reference;
     private LocalDateTime createdAt;
     private MainCategoryDomain category;
-
 
 }

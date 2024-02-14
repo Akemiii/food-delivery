@@ -1,8 +1,10 @@
 package org.example.factory;
 
+import org.example.api.dto.request.Restaurant.CreateCatalogRequest;
 import org.example.api.dto.request.Restaurant.CreateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantStatusRequest;
+import org.example.domain.CatalogMenuDomain;
 import org.example.domain.RestaurantDomain;
 import org.example.util.RestaurantStatus;
 import org.springframework.stereotype.Component;
@@ -27,6 +29,12 @@ public class RestaurantDomainFactory {
                 .build();
     }
 
+    public CatalogMenuDomain toCreateCatalog(final CreateCatalogRequest request) {
+        return CatalogMenuDomain.builder()
+                .name(request.getName())
+                .itens(request.getItens())
+                .build();
+    }
 
 
     public RestaurantDomain toUpdateDetails(final UUID restaurantId, final UpdateRestaurantRequest request) {
@@ -45,7 +53,7 @@ public class RestaurantDomainFactory {
                 .build();
     }
 
-    public RestaurantDomain toUpdateStatus(final UUID restaurantId, final UpdateRestaurantStatusRequest request){
+    public RestaurantDomain toUpdateStatus(final UUID restaurantId, final UpdateRestaurantStatusRequest request) {
 
 
         return RestaurantDomain.builder()

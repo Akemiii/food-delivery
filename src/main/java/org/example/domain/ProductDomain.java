@@ -24,8 +24,8 @@ public class ProductDomain {
     private String image;
     private BigDecimal price;
     private CategoryDomain category;
-    private Restaurant restaurant;
-    private LocalDateTime cratedAt;
+//    private Restaurant restaurant;
+//    private LocalDateTime cratedAt;
     private boolean needChoices;
     private ProductStatus status;
     List<Choice> choices;

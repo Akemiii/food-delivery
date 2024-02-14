@@ -81,7 +81,9 @@ public class ProductController {
         return objectMapperUtil.map(product, ProductResponse.class);
     }
 
-    //ADD product status update
+    //TODO ADD product status update
+
+    //TODO add choices update and addittionalItens update
 
     @Operation(summary = "Update products details by its id")
     @PutMapping("{productId}/details")

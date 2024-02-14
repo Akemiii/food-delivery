@@ -29,7 +29,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
     @CreationTimestamp
@@ -37,10 +37,9 @@ public class Product {
     private boolean needChoices;//Todo:: Atualizar o cadastro e o update do produto
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catalog_id")
     private CatalogMenu catalogMenu;
     @OneToMany(mappedBy = "product")
     private List<Choice> choices;
-
 }

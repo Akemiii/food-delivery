@@ -6,7 +6,7 @@ import org.example.api.dto.request.Restaurant.CreateCatalogRequest;
 import org.example.api.dto.request.Restaurant.CreateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantRequest;
 import org.example.api.dto.request.Restaurant.UpdateRestaurantStatusRequest;
-import org.example.api.dto.response.restaurant.RestaurantCatalogResponse;
+import org.example.api.dto.response.CatalogMenuResponse;
 import org.example.api.dto.response.restaurant.RestaurantResponse;
 import org.example.api.dto.response.restaurant.RestaurantStatusResponse;
 import org.example.factory.RestaurantDomainFactory;
@@ -75,13 +75,13 @@ public class RestaurantController {
 
     @Operation(summary = "Get catalog products by restaurantId")
     @GetMapping("{restaurantId}/catalog")
-    public RestaurantCatalogResponse getCatalog(@PathVariable UUID restaurantId){
-        return objectMapperUtil.map(service.getCatalog(restaurantId), RestaurantCatalogResponse.class);
+    public CatalogMenuResponse getCatalog(@PathVariable UUID restaurantId){
+        return objectMapperUtil.map(service.getCatalog(restaurantId), CatalogMenuResponse.class);
     }
 
     @PostMapping("{restauranId}/catalog")
-    public RestaurantCatalogResponse createCatalog(@PathVariable UUID restaurantId, @RequestBody @Validated CreateCatalogRequest request){
-        return objectMapperUtil.map(service.createCatalog(restaurantId), RestaurantCatalogResponse.class);
+    public CatalogMenuResponse createCatalog(@PathVariable UUID restaurantId, @RequestBody @Validated CreateCatalogRequest request){
+        return objectMapperUtil.map(service.createCatalog(domainFactory.toCreateCatalog(request)), CatalogMenuResponse.class);
     }
 
 }

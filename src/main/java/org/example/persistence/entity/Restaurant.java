@@ -45,7 +45,7 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant")
     private List<CatalogMenu> catalogMenus;
 
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
     private List<Product> products;
 
     @OneToMany(mappedBy = "restaurant")
