@@ -3,6 +3,7 @@ package org.example.factory;
 import org.example.api.dto.request.product.CreateProductRequest;
 import org.example.api.dto.request.product.UpdateProductImageRequest;
 import org.example.api.dto.request.product.UpdateProductRequest;
+import org.example.api.dto.request.product.UpdateProductStatusRequest;
 import org.example.domain.ProductDomain;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,9 @@ public class ProductDomainFactory {
                 .description(request.getDescription())
                 .price(request.getPrice())
                 .category(request.getCategory())
+                .status(request.getStatus())
+                .choices(request.getChoices())
+                .needChoices(request.isNeedChoices())
                 .build();
     }
 
@@ -35,6 +39,13 @@ public class ProductDomainFactory {
         return  ProductDomain.builder()
                 .productId(productId)
                 .image(request.getImage())
+                .build();
+    }
+
+    public ProductDomain toUpdateStatus(final UUID productId, final UpdateProductStatusRequest request){
+        return ProductDomain.builder()
+                .productId(productId)
+                .status(request.getStatus())
                 .build();
     }
 

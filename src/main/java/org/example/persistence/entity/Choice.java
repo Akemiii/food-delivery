@@ -12,7 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Choice {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,7 +24,7 @@ public class Choice {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    @OneToMany(mappedBy = "choice")
-    private List<Additionalitems> additionalitems;
+    @OneToMany(mappedBy = "choice", fetch = FetchType.EAGER)
+    private List<AdditionalItems> additionalItems;
 
 }

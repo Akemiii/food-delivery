@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.SimpleTimeZone;
 import java.util.UUID;
 
 @Table(name = "additional_items")
@@ -14,8 +13,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Additionalitems {
+@NoArgsConstructor
+public class AdditionalItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -26,7 +25,7 @@ public class Additionalitems {
     private String image;
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "choice_id")
     private Choice choice;
 

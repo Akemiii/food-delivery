@@ -26,7 +26,7 @@ public class Product {
     private String description;
     private String image;
     private BigDecimal price;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,6 +40,6 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catalog_id")
     private CatalogMenu catalogMenu;
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private List<Choice> choices;
 }

@@ -18,6 +18,7 @@ public class CatalogMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID catalogId;
+
     private String name;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")

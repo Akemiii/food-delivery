@@ -18,10 +18,7 @@ public class ProductValidator {
     }
 
     public void CheckValidBody(ProductDomain domain) {
-        if (!nonNull(domain.getName()) && !nonNull(domain.getDescription()) && !nonNull(domain.getImage()))
-            throw new IllegalArgumentException("O body não pode ser vazio");
-
-        if (domain.getName().isEmpty() && domain.getImage().isEmpty() && domain.getDescription().isEmpty())
+        if (!nonNull(domain.getName()) && !nonNull(domain.getDescription()) && !nonNull(domain.getImage()) && !nonNull(domain.getChoices()))
             throw new IllegalArgumentException("O body não pode ser vazio");
     }
 
@@ -38,6 +35,13 @@ public class ProductValidator {
         }
 
         if (nonNull(updateDomain.getCategory())) domain.setCategory(updateDomain.getCategory());
+
+        if (nonNull(updateDomain.getStatus())) domain.setStatus(updateDomain.getStatus());
+
+        if (nonNull(updateDomain.getChoices())) domain.setChoices(updateDomain.getChoices());
+
+
+        domain.setNeedChoices(updateDomain.isNeedChoices());
 
         return domain;
     }

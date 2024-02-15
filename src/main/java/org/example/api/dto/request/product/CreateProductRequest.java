@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.api.dto.request.CreateChoiceRequest;
 import org.example.domain.CategoryDomain;
 import org.example.domain.ChoiceDomain;
 import org.example.persistence.entity.Category;
@@ -28,5 +29,5 @@ public class CreateProductRequest {
     private CategoryDomain category;
     private ProductStatus status;
     private boolean needChoices;
-    private List<ChoiceDomain> choices;
+    private List<CreateChoiceRequest> choices;
 }

@@ -10,8 +10,9 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdditionalItensDomain {
+public class AdditionalItemsDomain {
     private UUID id;
+    private ChoiceDomain choice;
     private String name;
     private String description;
     private String image;

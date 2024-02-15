@@ -16,6 +16,7 @@ public class ChoiceDomain {
     private String name;
     private int min;
     private int max;
-    private List<AdditionalItensDomain> additionalItens;
+    private ProductDomain product;
+    private List<AdditionalItemsDomain> additionalItems;
 
 }
