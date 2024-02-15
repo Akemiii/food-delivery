@@ -23,9 +23,6 @@ public class AdditionalItems {
     private String description;
     private String image;
     private BigDecimal price;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "choice_id")
-    private Choice choice;
+    private UUID choiceId;
 
 }

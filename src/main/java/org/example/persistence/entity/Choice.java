@@ -20,10 +20,8 @@ public class Choice {
     private String name;
     private int min;
     private int max;
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
-    @OneToMany(mappedBy = "choice", fetch = FetchType.EAGER)
+    private UUID productId;
+    @OneToMany(mappedBy = "choiceId", fetch = FetchType.EAGER)
     private List<AdditionalItems> additionalItems;
 
 }
