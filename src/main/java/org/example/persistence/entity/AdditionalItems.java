@@ -17,7 +17,6 @@ import java.util.UUID;
 public class AdditionalItems {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
     private String name;

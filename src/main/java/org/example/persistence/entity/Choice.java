@@ -15,7 +15,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Choice {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "choice_id")
     private UUID choiceId;
     private String name;
