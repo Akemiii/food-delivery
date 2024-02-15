@@ -23,6 +23,9 @@ public class AdditionalItems {
     private String description;
     private String image;
     private BigDecimal price;
-    private UUID choiceId;
+
+    @ManyToOne
+    @JoinColumn(name = "choice_id")
+    private Choice choice;
 
 }

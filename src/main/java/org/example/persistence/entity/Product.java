@@ -39,6 +39,6 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catalog_id")
     private CatalogMenu catalogMenu;
-    @OneToMany(mappedBy = "productId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private List<Choice> choices;
 }
