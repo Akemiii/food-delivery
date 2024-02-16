@@ -2,6 +2,7 @@ package org.example.api.dto.request.product;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.api.dto.request.CreateChoiceRequest;
 import org.example.domain.CategoryDomain;
 import org.example.domain.ChoiceDomain;
 import org.example.util.ProductStatus;
@@ -19,5 +20,5 @@ public class UpdateProductRequest {
     private CategoryDomain category;
     private boolean needChoices;
     private ProductStatus status;
-    private List<ChoiceDomain> choices;
+    private List<CreateChoiceRequest> choices;
 }

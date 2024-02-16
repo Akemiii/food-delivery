@@ -84,22 +84,9 @@ public class ProductService {
 
         productDomain = productValidator.updateProductDomain(productDomain, updateProductDomain);
 
-        final var product = repository.save(objectMapperUtil.map(productDomain, Product.class));
+        final var product = repository.saveAndFlush(objectMapperUtil.map(productDomain, Product.class));
 
-        productDomain.getChoices().forEach(choiceDomain -> {
-            choiceDomain.setProduct(objectMapperUtil.map(product, ProductDomain.class));
-
-            final var choice = choiceRepository.save(objectMapperUtil.map(choiceDomain, Choice.class));
-
-            choiceDomain.getAdditionalItems().forEach(additionalItemDomain -> {
-                additionalItemDomain.setChoice(objectMapperUtil.map(choice, ChoiceDomain.class));
-
-                additionalitemsRepository.save(objectMapperUtil.map(additionalItemDomain, AdditionalItems.class));
-            });
-        });
-
-
-        return productDomain;
+        return objectMapperUtil.map(product, ProductDomain.class);
     }
 
     public ProductDomain updateImage(final ProductDomain updateProductDomain) {
