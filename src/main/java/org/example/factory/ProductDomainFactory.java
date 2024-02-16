@@ -24,7 +24,8 @@ public class ProductDomainFactory {
     private final ObjectMapperUtil objectMapperUtil;
 
     public ProductDomain toCreate(final CreateProductRequest request) {
-        final var builder = ProductDomain.builder()
+        final var builder = ProductDomain.builder() //DONE - BUG#0009 - ids for this class must be manually assigned before calling save()
+                .productId(UUID.randomUUID())
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
@@ -101,7 +102,7 @@ public class ProductDomainFactory {
                         .description(additionalItem.getDescription())
                         .image(additionalItem.getImage())
                         .price(additionalItem.getPrice())
-                        .choice(choice) //bug#0007 DONE
+                        .choice(choice) //DONE bug#0007 - erro ao criar um novo produto, o produto ainda não está salvo a entidade não encontra o productId salvo para fazer a persistencia.
                         .build()
                 ).collect(Collectors.toList());
     }

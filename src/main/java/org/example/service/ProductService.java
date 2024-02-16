@@ -2,7 +2,6 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.example.domain.ChoiceDomain;
 import org.example.domain.ProductDomain;
 import org.example.persistence.entity.*;
 import org.example.persistence.repository.*;
@@ -28,8 +27,6 @@ public class ProductService {
     private final ProductValidator productValidator;
     private final RestaurantRepository restaurantRepository;
     private final MainCategoryRepository mainCategoryRepository;
-    private final ChoiceRepository choiceRepository;
-    private final AdditionalItemsRepository additionalitemsRepository;
 
     public List<ProductDomain> getAllProducts() {
         return objectMapperUtil.mapAll(repository.findAll(), ProductDomain.class);
