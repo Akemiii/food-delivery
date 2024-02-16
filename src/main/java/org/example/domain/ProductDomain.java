@@ -18,6 +18,7 @@ public class ProductDomain {
     private String image;
     private BigDecimal price;
     private CategoryDomain category;
+    private RestaurantDomain restaurant;
     private boolean needChoices;
     private ProductStatus status;
     private List<ChoiceDomain> choices;
