@@ -51,15 +51,13 @@ public class ProductDomainFactory {
 
     public List<ChoiceDomain> buildChoiceDomain(final ProductDomain productDomain) {
         return productDomain.getChoices().stream()
-                .map(choiceDomain -> {
-                    return ChoiceDomain.builder()
-                            .choiceId(Optional.ofNullable(choiceDomain.getChoiceId()).orElse(UUID.randomUUID()))
-                            .name(choiceDomain.getName())
-                            .min(choiceDomain.getMin())
-                            .max(choiceDomain.getMax())
-                            .product(productDomain)
-                            .build();
-                }).toList();
+                .map(choiceDomain -> ChoiceDomain.builder()
+                        .choiceId(Optional.ofNullable(choiceDomain.getChoiceId()).orElse(UUID.randomUUID()))
+                        .name(choiceDomain.getName())
+                        .min(choiceDomain.getMin())
+                        .max(choiceDomain.getMax())
+                        .product(productDomain)
+                        .build()).toList();
     }
 
     public List<AdditionalItemsDomain> buildAdditionalItemsDomain(final ChoiceDomain choiceDomain, final Choice choice) {
@@ -83,7 +81,7 @@ public class ProductDomainFactory {
         return ProductDomain.builder().productId(productId).status(request.getStatus()).build();
     }
 
-    public ProductDomain build(final UUID productId, final UpdateProductRequest request){
+    public ProductDomain build(final UUID productId, final UpdateProductRequest request) {
         return ProductDomain.builder()
                 .productId(productId)
                 .name(request.getName())
