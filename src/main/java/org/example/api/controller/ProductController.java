@@ -85,13 +85,11 @@ public class ProductController {
     @Operation(summary = "Update products details by its id")
     @PutMapping("{productId}/details")
     public ProductResponse updateDetails(@PathVariable UUID productId, @RequestBody @Validated UpdateProductRequest request) {
-        final var product = service.update(productDomainFactory.toUpdateDetails(productId, request));
-
-        return objectMapperUtil.map(product, ProductResponse.class);
+        return service.updateDetails(productId, request);
     }
 
     @Operation(summary = "update product image by its id")
-    @PutMapping("{productId}/image")
+    @PatchMapping("{productId}/image")
     public ProductImageResponse updateImage(@PathVariable UUID productId, @RequestBody @Validated UpdateProductImageRequest request) {
         final var product = service.updateImage(productDomainFactory.toUpdateImage(productId, request));
 

@@ -23,7 +23,7 @@ public class Choice {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    @OneToMany(mappedBy = "choice", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "choice", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<AdditionalItems> additionalItems;
 
 }

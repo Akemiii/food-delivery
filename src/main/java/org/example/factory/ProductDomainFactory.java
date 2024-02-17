@@ -8,6 +8,7 @@ import org.example.api.dto.request.product.UpdateProductStatusRequest;
 import org.example.domain.AdditionalItemsDomain;
 import org.example.domain.ChoiceDomain;
 import org.example.domain.ProductDomain;
+import org.example.persistence.entity.Choice;
 import org.example.util.ObjectMapperUtil;
 import org.example.util.ProductStatus;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -24,26 +24,20 @@ public class ProductDomainFactory {
     private final ObjectMapperUtil objectMapperUtil;
 
     public ProductDomain toCreate(final CreateProductRequest request) {
-        final var builder = ProductDomain.builder() //DONE - BUG#0009 - ids for this class must be manually assigned before calling save()
+        return ProductDomain.builder()
                 .productId(UUID.randomUUID())
                 .name(request.getName())
                 .description(request.getDescription())
                 .price(request.getPrice())
                 .image(request.getImage())
                 .category(request.getCategory())
-                .status(Optional.ofNullable(
-                        request.getStatus()).orElse(
-                        ProductStatus.ACTIVE))
-                .needChoices(request.isNeedChoices())
-                .build();
-
-        builder.setChoices((buildChoiceDomain(builder, request)));
-
-        return builder;
+                .status(Optional.ofNullable(request.getStatus()).orElse(ProductStatus.ACTIVE))
+                .choices(objectMapperUtil.mapAll(request.getChoices(), ChoiceDomain.class))
+                .needChoices(request.isNeedChoices()).build();
     }
 
     public ProductDomain toUpdateDetails(final UUID productId, final UpdateProductRequest request) {
-        final var builder = ProductDomain.builder()
+        return ProductDomain.builder()
                 .productId(productId)
                 .name(request.getName())
                 .description(request.getDescription())
@@ -51,60 +45,33 @@ public class ProductDomainFactory {
                 .category(request.getCategory())
                 .status(request.getStatus())
                 .needChoices(request.isNeedChoices())
+                .choices(objectMapperUtil.mapAll(request.getChoices(), ChoiceDomain.class))
                 .build();
-
-        builder.setChoices((buildChoiceDomain(builder, request)));
-
-
-        return builder;
     }
 
-    public List<ChoiceDomain> buildChoiceDomain(final ProductDomain productDomain, final UpdateProductRequest request) {
-        final var choices = request.getChoices();
-
-        return choices
-                .stream()
-                .map(choice -> ChoiceDomain.builder()
-                        .choiceId(Optional.ofNullable(choice.getChoiceId()).orElse(UUID.randomUUID()))
-                        .name(choice.getName())
-                        .min(choice.getMin())
-                        .max(choice.getMax())
-                        .product(productDomain)
-                        .additionalItems(buildAdditionalItemsDomain(objectMapperUtil.map(choice, ChoiceDomain.class)))
-                        .build())
-                .collect(Collectors.toList());
+    public List<ChoiceDomain> buildChoiceDomain(final ProductDomain productDomain) {
+        return productDomain.getChoices().stream()
+                .map(choiceDomain -> {
+                    return ChoiceDomain.builder()
+                            .choiceId(Optional.ofNullable(choiceDomain.getChoiceId()).orElse(UUID.randomUUID()))
+                            .name(choiceDomain.getName())
+                            .min(choiceDomain.getMin())
+                            .max(choiceDomain.getMax())
+                            .product(productDomain)
+                            .build();
+                }).toList();
     }
 
-    public List<ChoiceDomain> buildChoiceDomain(final ProductDomain productDomain, final CreateProductRequest request) {
-        final var choices = request.getChoices();
-
-        return choices
-                .stream()
-                .map(choice -> ChoiceDomain.builder()
-                        .choiceId(Optional.ofNullable(choice.getChoiceId()).orElse(UUID.randomUUID()))
-                        .name(choice.getName())
-                        .min(choice.getMin())
-                        .max(choice.getMax())
-                        .product(productDomain)//bug#0008 TODO erro ao criar um novo produto, o produto ainda não está salvo a entidade não encontra o productId salvo para fazer a persistencia.
-                        .additionalItems(buildAdditionalItemsDomain(objectMapperUtil.map(choice, ChoiceDomain.class)))
-                        .build())
-                .collect(Collectors.toList());
-    }
-
-    public List<AdditionalItemsDomain> buildAdditionalItemsDomain(final ChoiceDomain choice) {
-        final var additionalItems = choice.getAdditionalItems();
-
-        return additionalItems.
-                stream()
-                .map(additionalItem -> AdditionalItemsDomain.builder()
-                        .id(Optional.ofNullable(additionalItem.getId()).orElse(UUID.randomUUID()))
-                        .name(additionalItem.getName())
-                        .description(additionalItem.getDescription())
-                        .image(additionalItem.getImage())
-                        .price(additionalItem.getPrice())
-                        .choice(choice) //DONE bug#0007 - erro ao criar um novo produto, o produto ainda não está salvo a entidade não encontra o productId salvo para fazer a persistencia.
-                        .build()
-                ).collect(Collectors.toList());
+    public List<AdditionalItemsDomain> buildAdditionalItemsDomain(final ChoiceDomain choiceDomain, final Choice choice) {
+        return choiceDomain.getAdditionalItems().stream()
+                .map(additionalItemsDomain -> AdditionalItemsDomain.builder()
+                        .id(Optional.ofNullable(additionalItemsDomain.getId()).orElse(UUID.randomUUID()))
+                        .name(additionalItemsDomain.getName())
+                        .description(additionalItemsDomain.getDescription())
+                        .image(additionalItemsDomain.getImage())
+                        .price(additionalItemsDomain.getPrice())
+                        .choice(objectMapperUtil.map(choice, ChoiceDomain.class))
+                        .build()).toList();
     }
 
 
@@ -116,4 +83,18 @@ public class ProductDomainFactory {
         return ProductDomain.builder().productId(productId).status(request.getStatus()).build();
     }
 
+    public ProductDomain build(final UUID productId, final UpdateProductRequest request){
+        return ProductDomain.builder()
+                .productId(productId)
+                .name(request.getName())
+                .description(request.getDescription())
+                .category(request.getCategory())
+                .needChoices(request.isNeedChoices())
+                .status(request.getStatus())
+                .choices(
+                        objectMapperUtil
+                                .mapAll(request.getChoices(),
+                                        ChoiceDomain.class))
+                .build();
+    }
 }

@@ -2,7 +2,12 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.example.api.dto.request.product.UpdateProductRequest;
+import org.example.api.dto.response.choice.ChoiceResponse;
+import org.example.api.dto.response.product.ProductResponse;
+import org.example.domain.CategoryDomain;
 import org.example.domain.ProductDomain;
+import org.example.factory.ProductDomainFactory;
 import org.example.persistence.entity.*;
 import org.example.persistence.repository.*;
 import org.example.util.ObjectMapperUtil;
@@ -15,11 +20,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class ProductService {
 
     private final ProductRepository repository;
@@ -27,6 +34,7 @@ public class ProductService {
     private final ProductValidator productValidator;
     private final RestaurantRepository restaurantRepository;
     private final MainCategoryRepository mainCategoryRepository;
+    private final ProductDomainFactory factory;
 
     public List<ProductDomain> getAllProducts() {
         return objectMapperUtil.mapAll(repository.findAll(), ProductDomain.class);
@@ -75,15 +83,42 @@ public class ProductService {
         repository.deleteById(productId);
     }
 
-    public ProductDomain update(final ProductDomain updateProductDomain) {
-        productValidator.CheckValidBody(updateProductDomain);
-        var productDomain = findById(updateProductDomain.getProductId());
+    @SneakyThrows
+    @Transactional
+    public ProductResponse updateDetails(final UUID productId, final UpdateProductRequest request) {
+        final var product = repository.findById(productId).orElseThrow(ChangeSetPersister.NotFoundException::new);
 
-        productDomain = productValidator.updateProductDomain(productDomain, updateProductDomain);
 
-        final var product = repository.saveAndFlush(objectMapperUtil.map(productDomain, Product.class));
+        return updateProductModel()
+                .andThen(persistProduct())
+                .andThen(buildProductResponse())
+                .apply(product, request);
+    }
 
-        return objectMapperUtil.map(product, ProductDomain.class);
+    private BiFunction<UUID, UpdateProductRequest, ProductDomain> updateProductDomain() {
+        return factory::toUpdateDetails;
+    }
+
+    private BiFunction<Product, UpdateProductRequest, Product> updateProductModel(){
+        return productValidator::updateProduct;
+    }
+
+    private UnaryOperator<Product> persistProduct() {
+        return repository::save;
+    }
+
+    private Function<Product, ProductResponse> buildProductResponse() {
+        return domain -> ProductResponse.builder()
+                .productId(domain.getProductId())
+                .name(domain.getName())
+                .description(domain.getDescription())
+                .price(domain.getPrice())
+                .image(domain.getImage())
+                .needChoices(domain.isNeedChoices())
+                .category(objectMapperUtil.map(domain.getCategory(), CategoryDomain.class))
+                .status(domain.getStatus())
+                .choices(objectMapperUtil.mapAll(domain.getChoices(), ChoiceResponse.class))
+                .build();
     }
 
     public ProductDomain updateImage(final ProductDomain updateProductDomain) {
@@ -108,16 +143,26 @@ public class ProductService {
 
     private void updateRestaurantMainCategoryWithMajorityCategory(UUID restaurantId) {
         //Calcular a categoria com a maioria dos produtos
-        Optional<Category> majorityCategory = repository.findByRestaurant_RestaurantId(restaurantId).stream().collect(Collectors.groupingBy(Product::getCategory, Collectors.counting())).entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey);
+        Optional<Category> majorityCategory = repository.
+                findByRestaurant_RestaurantId(restaurantId)
+                .stream()
+                .collect(Collectors
+                        .groupingBy(Product::getCategory, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey);
 
         //Se não houver uma caegoria majoritária, retornar
         if (majorityCategory.isEmpty()) return;
 
         //Verificar se a categoria majoritária já existe como MainCategory
-        MainCategory mainCategory = mainCategoryRepository.findById(majorityCategory.get().getCategoryId()).orElseGet(() -> {
-            MainCategory newMainCategory = objectMapperUtil.map(majorityCategory.get(), MainCategory.class);
-            return mainCategoryRepository.save(newMainCategory);
-        });
+        MainCategory mainCategory = mainCategoryRepository
+                .findById(majorityCategory.get().getCategoryId())
+                .orElseGet(() -> {
+                    MainCategory newMainCategory = objectMapperUtil.map(majorityCategory.get(), MainCategory.class);
+                    return mainCategoryRepository.save(newMainCategory);
+                });
 
 
         //Atualizar o restaurante com a categoria majoritária
