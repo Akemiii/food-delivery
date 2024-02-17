@@ -67,7 +67,8 @@ public class ProductValidator {
                 .orElse(existingProduct.getDescription());
         BigDecimal newPrice = Optional.ofNullable(updateRequest.getPrice()).orElse(existingProduct.getPrice());
 
-        Category newCategory = Optional.ofNullable(objectMapperUtil.map(updateRequest.getCategory(), Category.class))
+        Category newCategory = Optional.ofNullable(updateRequest.getCategory())
+                .map(category -> objectMapperUtil.map(category, Category.class))
                 .orElse(existingProduct.getCategory());
 
         boolean newNeedChoices = Optional.of(updateRequest.isNeedChoices()).orElse(existingProduct.isNeedChoices());
