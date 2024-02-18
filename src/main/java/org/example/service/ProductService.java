@@ -100,7 +100,7 @@ public class ProductService {
     }
 
     private BiFunction<Product, UpdateProductRequest, Product> updateProductModel(){
-        return productValidator::updateProduct;
+        return factory::updateProduct;
     }
 
     private UnaryOperator<Product> persistProduct() {
